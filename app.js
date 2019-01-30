@@ -1,11 +1,12 @@
-let http = require('http');
-let path = require('path');
+const http = require('http');
+const path = require('path');
 
-let express = require('express');
-let logger = require('morgan');
-let bodyParser = require('body-parser');
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 
 let app = express();
+let port = process.env.PORT;
 
 app.set('views', path.resolve(__dirname, 'views') );
 app.set('view engine', 'ejs');
@@ -47,6 +48,6 @@ app.use((req, res) => {
     res.status(404).render('404');
 });
 
-app.listen(3000, () => {
+app.listen(port || 3000, () => {
     console.log('Guestbook app started on port 3k!!!');
 })
